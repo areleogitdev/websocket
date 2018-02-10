@@ -66,7 +66,7 @@
                   type = "text" placeholder = "username to call" /> 
                <button id = "callBtn" class = "btn-success btn">Call</button> 
                <button id = "hangUpBtn" class = "btn-danger btn">Hang Up</button> 
-            </div> mnnnnn
+            </div> mnnnnnsddddddddddddddddddds
          </div>
 			
       </div> 
@@ -76,12 +76,13 @@
 var name; 
 var connectedUser;
 var host_;
+var hostdef = location.origin.replace(/^http/, 'ws')
 host_=window.location.hostname; 
-console.log(host_);
+console.log(hostdef);
 
 
 
-var conn = new WebSocket('wss://afternoon-harbor-36589.herokuapp.com');
+var conn = new WebSocket(hostdef);
 
 conn.onopen = function () { 
    console.log("Connected to the signaling server"); 
