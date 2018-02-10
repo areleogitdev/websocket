@@ -15,7 +15,7 @@ var wss = new WebSocketServer({server: server})
 console.log("websocket server created")
 
 
-//all connected to the server users 
+//all connected to the server users success
 var users = {};
 
 //when a user connects to our sever 
