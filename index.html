@@ -49,13 +49,13 @@
          <div class = "row"> 
 			
             <div class = "col-md-6 text-right"> 
-               Local audio: <div id = "localAudio" 
-               controls autoplay></div> 
+               Local audio: <audio id = "localAudio" 
+               controls autoplay></audio> 
             </div>
 				
             <div class = "col-md-6 text-left"> 
-               Remote audio: <div id = "remoteAudio" 
-                  controls autoplay></div> 
+               Remote audio: <audio id = "remoteAudio" 
+                  controls autoplay></audio> 
             </div> 
 				
          </div> 
@@ -175,7 +175,7 @@ function handleLogin(success) {
       //********************** 
 		
       //getting local audio stream 
-      navigator.webkitGetUserMedia({ video: true, audio: true }, function (myStream) { 
+      navigator.webkitGetUserMedia({ video: false, audio: true }, function (myStream) { 
          stream = myStream; 
 			
          //displaying local audio stream on the page 
