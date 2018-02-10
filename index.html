@@ -19,7 +19,7 @@
 
     <script>
       var host = location.origin.replace(/^http/, 'ws')
-      var ws = new WebSocket(host);
+      var ws = new WebSocket('wss://afternoon-harbor-36589.herokuapp.com');
       ws.onmessage = function (event) {
         var li = document.createElement('li');
         li.innerHTML = JSON.parse(event.data);
