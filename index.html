@@ -31,7 +31,7 @@
          <div class = "row"> 
             <div class = "col-md-4 col-md-offset-4">
 				
-               <h2>WebRTC Voice Demo. Please sign in</h2>
+               <h2>Areleo. Please sign in</h2>
 				
                <label for = "usernameInput" class = "sr-only">Login</label> 
                <input type = "email" id = "usernameInput" 
@@ -47,16 +47,16 @@
       <div id = "callPage" class = "call-page">
 		
          <div class = "row"> 
-			
-            <div class = "col-md-6 text-right"> 
-               Local audio: <audio id = "localAudio" 
+			the sistem
+           
+               audio: <audio id = "localAudio" 
                controls autoplay></audio> 
-            </div>
+           
 				
-            <div class = "col-md-6 text-left"> 
+            
                Remote audio: <audio id = "remoteAudio" 
                   controls autoplay></audio> 
-            </div> 
+            
 				
          </div> 
 			
@@ -70,21 +70,21 @@
          </div>
 			
       </div> 
-	
-		
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
 	<script type="text/javascript">
 //our username 
 var name; 
 var connectedUser;
-var host_;
-var hostdef = location.origin.replace(/^http/, 'ws')
-
-console.log(hostdef);
-
+//var host_;
+//host_=window.location.hostname; 
+//console.log(host_);
 
 
-var conn = new WebSocket(hostdef);
-  
+
+var conn = new WebSocket('wss://afternoon-harbor-36589.herokuapp.com');
+
 conn.onopen = function () { 
    console.log("Connected to the signaling server"); 
 };
@@ -175,9 +175,11 @@ function handleLogin(success) {
       //********************** 
       //Starting a peer connection 
       //********************** 
-		
+		navigator.getUserMedia = navigator.getUserMedia ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia;	
       //getting local audio stream 
-      navigator.webkitGetUserMedia({ video: false, audio: true }, function (myStream) { 
+      navigator.getUserMedia({ video: false, audio: true }, function (myStream) { 
          stream = myStream; 
 			
          //displaying local audio stream on the page 
@@ -196,6 +198,7 @@ function handleLogin(success) {
          //when a remote user adds stream to the peer connection, we display it 
          yourConn.onaddstream = function (e) { 
             remoteAudio.src = window.URL.createObjectURL(e.stream); 
+			alert("video on way");
          }; 
 			
          // Setup ice handling 
@@ -238,6 +241,7 @@ callBtn.addEventListener("click", function () {
  
 //when somebody sends us an offer 
 function handleOffer(offer, name) { 
+	alert("offer");
    connectedUser = name; 
    yourConn.setRemoteDescription(new RTCSessionDescription(offer)); 
 	
@@ -258,11 +262,13 @@ function handleOffer(offer, name) {
  
 //when we got an answer from a remote user 
 function handleAnswer(answer) { 
+	
    yourConn.setRemoteDescription(new RTCSessionDescription(answer)); 
 };
  
 //when we got an ice candidate from a remote user 
 function handleCandidate(candidate) { 
+	
    yourConn.addIceCandidate(new RTCIceCandidate(candidate)); 
 };
  
@@ -287,4 +293,3 @@ function handleLeave() {
 </body>
 
 </html>
-
