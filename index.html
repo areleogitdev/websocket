@@ -174,11 +174,9 @@ function handleLogin(success) {
       //********************** 
       //Starting a peer connection 
       //********************** 
-			navigator.getUserMedia = navigator.getUserMedia ||
-                         navigator.webkitGetUserMedia ||
-                         navigator.mozGetUserMedia;
+
       //getting local audio stream 
-      navigator.getUserMedia({ video: { width: 160, height: 160 }, audio: true }, function (myStream) { 
+      navigator.mediaDevices.getUserMedia({ video: { width: 160, height: 160 }, audio: true }, function (myStream) { 
          stream = myStream; 
 			
          //displaying local audio stream on the page 
