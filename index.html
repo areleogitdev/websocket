@@ -157,7 +157,8 @@ function handleLogin(success) {
       //********************** 
       //Starting a peer connection 
       //********************** 
-		navigator.getUserMedia = navigator.getUserMedia ||
+
+		window.navigator.getUserMedia = navigator.getUserMedia ||
 								 navigator.webkitGetUserMedia ||
 								 navigator.mozGetUserMedia;		
       //getting local audio stream 
